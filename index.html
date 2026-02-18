@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AirClear Pakistan | Overflight & Landing Permit Services</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    :root {
+      --navy: #0a1628;
+      --blue: #1a3a6e;
+      --sky: #1e6bb8;
+      --accent: #e8a020;
+      --silver: #c9d4e0;
+      --light: #f4f7fc;
+      --white: #ffffff;
+      --grey: #6b7a90;
+      --text: #1c2637;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--white);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4, .logo-text { font-family: 'Syne', sans-serif; }
+
+    /* ─── NAVBAR ─── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%;
+      height: 72px;
+      background: rgba(10,22,40,0.97);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      transition: all 0.3s;
+    }
+
+    .logo {
+      display: flex; align-items: center; gap: 12px; text-decoration: none;
+    }
+    .logo-icon {
+      width: 40px; height: 40px;
+      background: linear-gradient(135deg, var(--sky), var(--accent));
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; color: white;
+    }
+    .logo-text {
+      color: white; font-size: 1.15rem; font-weight: 700; letter-spacing: 0.5px;
+    }
+    .logo-text span { color: var(--accent); }
+
+    .nav-links {
+      display: flex; align-items: center; gap: 32px; list-style: none;
+    }
+    .nav-links a {
+      color: var(--silver); text-decoration: none; font-size: 0.875rem;
+      font-weight: 500; letter-spacing: 0.3px;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    .nav-cta {
+      background: var(--accent);
+      color: var(--navy) !important;
+      padding: 8px 20px;
+      border-radius: 6px;
+      font-weight: 700 !important;
+      font-size: 0.82rem !important;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      transition: transform 0.2s, box-shadow 0.2s !important;
+    }
+    .nav-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(232,160,32,0.4);
+      color: var(--navy) !important;
+    }
+
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px;
+    }
+    .hamburger span {
+      display: block; width: 24px; height: 2px; background: white; border-radius: 2px; transition: 0.3s;
+    }
+
+    /* ─── HERO ─── */
+    #home {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #050d1a 0%, #0a1e3d 40%, #0d2a52 70%, #0f1e35 100%);
+      position: relative;
+      display: flex; align-items: center;
+      overflow: hidden;
+      padding-top: 72px;
+    }
+
+    .hero-grid-bg {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(30,107,184,0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(30,107,184,0.08) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse at center, black 30%, transparent 80%);
+    }
+
+    .hero-glow {
+      position: absolute;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(30,107,184,0.18) 0%, transparent 70%);
+      top: 50%; left: 50%; transform: translate(-50%,-50%);
+      pointer-events: none;
+    }
+
+    .route-line {
+      position: absolute;
+      width: 100%; height: 100%;
+      top: 0; left: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .route-line svg {
+      position: absolute;
+      width: 100%; height: 100%;
+      opacity: 0.15;
+    }
+
+    .plane-fly {
+      position: absolute;
+      font-size: 2rem;
+      color: rgba(232,160,32,0.6);
+      animation: flyAcross 18s linear infinite;
+      top: 30%;
+    }
+    @keyframes flyAcross {
+      from { left: -5%; opacity: 0; }
+      5% { opacity: 1; }
+      95% { opacity: 1; }
+      to { left: 105%; opacity: 0; }
+    }
+
+    .hero-content {
+      position: relative; z-index: 2;
+      max-width: 1200px; margin: 0 auto;
+      padding: 80px 5%;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+    }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(232,160,32,0.12);
+      border: 1px solid rgba(232,160,32,0.3);
+      color: var(--accent);
+      padding: 6px 14px; border-radius: 20px;
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 1px;
+      text-transform: uppercase; margin-bottom: 24px;
+    }
+    .badge-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--accent);
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.3); }
+    }
+
+    .hero-title {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 800;
+      color: white;
+      line-height: 1.12;
+      margin-bottom: 20px;
+    }
+    .hero-title span { color: var(--accent); }
+
+    .hero-sub {
+      color: var(--silver); font-size: 1rem; line-height: 1.7;
+      margin-bottom: 36px; font-weight: 300;
+      max-width: 480px;
+    }
+
+    .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--navy);
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-weight: 700; font-size: 0.9rem;
+      text-decoration: none;
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: 'Syne', sans-serif;
+      letter-spacing: 0.3px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(232,160,32,0.4);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: white;
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-weight: 500; font-size: 0.9rem;
+      text-decoration: none;
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 1px solid rgba(255,255,255,0.25);
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .btn-secondary:hover {
+      border-color: rgba(255,255,255,0.5);
+      background: rgba(255,255,255,0.06);
+    }
+
+    .hero-stats {
+      display: flex; gap: 32px; margin-top: 48px;
+    }
+    .stat { border-left: 2px solid var(--accent); padding-left: 14px; }
+    .stat-num { font-family: 'Syne', sans-serif; font-size: 1.6rem; font-weight: 800; color: white; }
+    .stat-label { font-size: 0.78rem; color: var(--silver); letter-spacing: 0.5px; }
+
+    .hero-visual {
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .radar-card {
+      position: relative;
+      width: 340px; height: 340px;
+      border-radius: 50%;
+      border: 1px solid rgba(30,107,184,0.3);
+      display: flex; align-items: center; justify-content: center;
+      background: radial-gradient(circle, rgba(30,107,184,0.08) 0%, transparent 70%);
+    }
+    .radar-inner1, .radar-inner2, .radar-inner3 {
+      position: absolute; border-radius: 50%;
+      border: 1px solid rgba(30,107,184,0.2);
+    }
+    .radar-inner1 { width: 70%; height: 70%; }
+    .radar-inner2 { width: 45%; height: 45%; }
+    .radar-inner3 { width: 20%; height: 20%; background: rgba(30,107,184,0.15); }
+
+    .radar-sweep {
+      position: absolute; width: 100%; height: 100%;
+      border-radius: 50%;
+      background: conic-gradient(rgba(30,107,184,0.25) 0deg, transparent 60deg);
+      animation: sweep 4s linear infinite;
+    }
+    @keyframes sweep { to { transform: rotate(360deg); } }
+
+    .radar-blip {
+      position: absolute; width: 8px; height: 8px; border-radius: 50%;
+      background: var(--accent);
+      animation: blip 2s infinite;
+    }
+    .radar-blip:nth-child(1) { top: 20%; left: 60%; animation-delay: 0s; }
+    .radar-blip:nth-child(2) { top: 55%; left: 25%; animation-delay: 0.8s; }
+    .radar-blip:nth-child(3) { top: 70%; left: 70%; animation-delay: 1.5s; }
+    @keyframes blip { 0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.3;transform:scale(0.5)} }
+
+    .radar-cross-h, .radar-cross-v {
+      position: absolute; background: rgba(30,107,184,0.2);
+    }
+    .radar-cross-h { width: 100%; height: 1px; top: 50%; }
+    .radar-cross-v { width: 1px; height: 100%; left: 50%; }
+
+    .radar-label {
+      position: absolute; bottom: -50px;
+      color: var(--silver); font-size: 0.75rem; letter-spacing: 1px;
+      text-transform: uppercase; text-align: center; width: 100%;
+    }
+
+    /* ─── SECTION COMMONS ─── */
+    section { scroll-margin-top: 72px; }
+
+    .section-wrap {
+      max-width: 1200px; margin: 0 auto; padding: 80px 5%;
+    }
+
+    .section-tag {
+      display: inline-block;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--sky);
+      margin-bottom: 12px;
+      padding: 4px 12px;
+      background: rgba(30,107,184,0.08);
+      border-radius: 20px;
+    }
+
+    .section-title {
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 800; color: var(--navy); line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .section-title span { color: var(--sky); }
+
+    .section-desc {
+      color: var(--grey); font-size: 1rem; line-height: 1.7;
+      max-width: 580px; margin-bottom: 48px;
+    }
+
+    /* ─── TRUST BAR ─── */
+    .trust-bar {
+      background: var(--navy);
+      padding: 18px 5%;
+    }
+    .trust-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 16px;
+    }
+    .trust-item {
+      display: flex; align-items: center; gap: 10px;
+      color: var(--silver); font-size: 0.82rem; font-weight: 500;
+    }
+    .trust-item i { color: var(--accent); font-size: 0.9rem; }
+
+    /* ─── SERVICES ─── */
+    #services { background: var(--light); }
+
+    .services-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px;
+    }
+
+    .service-card {
+      background: white;
+      border-radius: 14px;
+      padding: 32px 28px;
+      border: 1px solid rgba(10,22,40,0.08);
+      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+      position: relative; overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--sky), var(--accent));
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.3s;
+    }
+    .service-card:hover { transform: translateY(-5px); box-shadow: 0 16px 40px rgba(10,22,40,0.1); }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-card:hover .service-icon { background: var(--sky); color: white; }
+
+    .service-icon {
+      width: 52px; height: 52px; border-radius: 12px;
+      background: rgba(30,107,184,0.1);
+      color: var(--sky);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; margin-bottom: 20px;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .service-card h3 {
+      font-size: 1.05rem; font-weight: 700; color: var(--navy);
+      margin-bottom: 10px;
+    }
+    .service-card p { color: var(--grey); font-size: 0.88rem; line-height: 1.65; }
+
+    .service-list {
+      list-style: none; margin-top: 14px;
+    }
+    .service-list li {
+      font-size: 0.82rem; color: var(--grey); padding: 4px 0;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .service-list li::before {
+      content: '›'; color: var(--sky); font-weight: 700; font-size: 1rem;
+    }
+
+    /* ─── WHY US ─── */
+    #about { background: white; }
+
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center;
+    }
+
+    .about-visual {
+      position: relative;
+    }
+    .about-img-box {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 50%, var(--sky) 100%);
+      border-radius: 16px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 16px; overflow: hidden; position: relative;
+    }
+    .about-img-box::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 30px 30px;
+    }
+    .about-icon-big { font-size: 4rem; color: rgba(255,255,255,0.15); position: absolute; bottom: 20px; right: 20px; }
+    .about-stat-cards {
+      display: flex; gap: 12px; position: relative; z-index: 2;
+    }
+    .asc {
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+      padding: 16px 20px; border-radius: 10px; text-align: center;
+    }
+    .asc-num { font-family: 'Syne',sans-serif; font-size: 1.8rem; font-weight: 800; color: white; }
+    .asc-label { font-size: 0.7rem; color: rgba(255,255,255,0.6); letter-spacing: 0.5px; }
+
+    .about-badge-float {
+      position: absolute; top: -16px; right: -16px;
+      background: var(--accent);
+      color: var(--navy);
+      padding: 10px 16px; border-radius: 10px;
+      font-family: 'Syne', sans-serif;
+      font-size: 0.78rem; font-weight: 800;
+      box-shadow: 0 8px 24px rgba(232,160,32,0.3);
+      z-index: 3;
+    }
+
+    .why-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+    }
+    .why-item {
+      display: flex; align-items: flex-start; gap: 14px; padding: 16px;
+      background: var(--light); border-radius: 10px;
+    }
+    .why-icon {
+      width: 38px; height: 38px; min-width: 38px;
+      background: var(--sky); color: white;
+      border-radius: 8px; display: flex; align-items: center; justify-content: center;
+      font-size: 0.9rem;
+    }
+    .why-item h4 { font-size: 0.9rem; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+    .why-item p { font-size: 0.8rem; color: var(--grey); line-height: 1.5; }
+
+    /* ─── DOCUMENTS ─── */
+    #documents { background: var(--light); }
+
+    .docs-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px;
+    }
+
+    .doc-card {
+      background: white; border-radius: 14px; padding: 28px 24px;
+      border: 1px solid rgba(10,22,40,0.08);
+    }
+    .doc-card-header {
+      display: flex; align-items: center; gap: 12px; margin-bottom: 20px;
+      padding-bottom: 16px; border-bottom: 1px solid var(--light);
+    }
+    .doc-icon {
+      width: 44px; height: 44px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--sky), var(--blue));
+      color: white; display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+    }
+    .doc-card-header h3 { font-size: 0.95rem; font-weight: 700; color: var(--navy); }
+    .doc-list { list-style: none; }
+    .doc-list li {
+      font-size: 0.83rem; color: var(--grey);
+      padding: 7px 0; border-bottom: 1px solid rgba(10,22,40,0.05);
+      display: flex; align-items: flex-start; gap: 10px; line-height: 1.4;
+    }
+    .doc-list li:last-child { border-bottom: none; }
+    .doc-list li i { color: var(--accent); margin-top: 2px; font-size: 0.75rem; min-width: 12px; }
+
+    .doc-note {
+      margin-top: 32px;
+      background: linear-gradient(135deg, var(--navy), var(--blue));
+      border-radius: 14px; padding: 28px;
+      display: flex; gap: 20px; align-items: flex-start;
+    }
+    .doc-note i { font-size: 1.5rem; color: var(--accent); margin-top: 2px; }
+    .doc-note h4 { color: white; font-size: 0.95rem; margin-bottom: 8px; }
+    .doc-note p { color: var(--silver); font-size: 0.85rem; line-height: 1.6; }
+
+    /* ─── CTA STRIP ─── */
+    .cta-strip {
+      background: linear-gradient(135deg, var(--navy) 0%, #0d2a52 100%);
+      padding: 64px 5%;
+      text-align: center; position: relative; overflow: hidden;
+    }
+    .cta-strip::before {
+      content: '\f072';
+      font-family: 'Font Awesome 6 Free'; font-weight: 900;
+      position: absolute; font-size: 14rem;
+      color: rgba(255,255,255,0.02);
+      top: -30px; left: 5%; transform: rotate(-15deg);
+    }
+    .cta-strip h2 {
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      color: white; margin-bottom: 12px;
+    }
+    .cta-strip p { color: var(--silver); font-size: 1rem; margin-bottom: 32px; }
+    .cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+    .btn-whatsapp {
+      background: #25D366; color: white;
+      padding: 14px 28px; border-radius: 8px;
+      font-weight: 700; font-size: 0.9rem;
+      text-decoration: none;
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: 'Syne', sans-serif;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-whatsapp:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37,211,102,0.3); }
+
+    /* ─── CONTACT ─── */
+    #contact { background: white; }
+
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1.3fr; gap: 60px; align-items: start;
+    }
+
+    .contact-info h3 { font-size: 1.1rem; color: var(--navy); margin-bottom: 24px; }
+
+    .contact-item {
+      display: flex; gap: 14px; align-items: flex-start; margin-bottom: 24px;
+    }
+    .contact-icon {
+      width: 44px; height: 44px; min-width: 44px;
+      background: rgba(30,107,184,0.1); color: var(--sky);
+      border-radius: 10px; display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+    }
+    .contact-item h4 { font-size: 0.82rem; color: var(--grey); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .contact-item a, .contact-item p {
+      color: var(--navy); font-size: 0.9rem; text-decoration: none; font-weight: 500;
+    }
+    .contact-item a:hover { color: var(--sky); }
+
+    .wa-card {
+      background: linear-gradient(135deg, #128C7E, #25D366);
+      border-radius: 12px; padding: 20px 24px;
+      display: flex; align-items: center; gap: 16px; margin-top: 28px;
+      text-decoration: none; transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .wa-card:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(37,211,102,0.25); }
+    .wa-card i { font-size: 2rem; color: white; }
+    .wa-card-text strong { color: white; font-size: 0.9rem; display: block; margin-bottom: 2px; }
+    .wa-card-text span { color: rgba(255,255,255,0.75); font-size: 0.8rem; }
+
+    /* FORM */
+    .contact-form {
+      background: var(--light); border-radius: 16px; padding: 36px;
+    }
+    .contact-form h3 { font-size: 1.15rem; color: var(--navy); margin-bottom: 24px; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    .form-group { margin-bottom: 16px; }
+    .form-group label {
+      display: block; font-size: 0.78rem; font-weight: 600; color: var(--text);
+      margin-bottom: 6px; letter-spacing: 0.3px;
+    }
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%; padding: 11px 14px;
+      border: 1px solid rgba(10,22,40,0.15); border-radius: 8px;
+      font-family: 'DM Sans', sans-serif; font-size: 0.88rem; color: var(--text);
+      background: white; outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      border-color: var(--sky);
+      box-shadow: 0 0 0 3px rgba(30,107,184,0.1);
+    }
+    .form-group textarea { resize: vertical; min-height: 100px; }
+
+    .btn-submit {
+      width: 100%;
+      background: var(--navy); color: white;
+      padding: 14px; border: none; border-radius: 8px;
+      font-family: 'Syne', sans-serif; font-size: 0.9rem; font-weight: 700;
+      cursor: pointer; letter-spacing: 0.3px;
+      transition: background 0.2s, transform 0.2s;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+    }
+    .btn-submit:hover { background: var(--sky); transform: translateY(-1px); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--navy);
+      padding: 48px 5% 24px;
+    }
+    .footer-grid {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px;
+      padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .footer-brand p { color: var(--silver); font-size: 0.85rem; line-height: 1.7; margin: 14px 0 20px; max-width: 280px; }
+    .footer-social { display: flex; gap: 10px; }
+    .social-btn {
+      width: 36px; height: 36px; border-radius: 8px;
+      background: rgba(255,255,255,0.07);
+      color: var(--silver); text-decoration: none;
+      display: flex; align-items: center; justify-content: center; font-size: 0.85rem;
+      transition: background 0.2s, color 0.2s;
+    }
+    .social-btn:hover { background: var(--sky); color: white; }
+
+    .footer-col h4 { color: white; font-size: 0.9rem; font-weight: 700; margin-bottom: 16px; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 10px; }
+    .footer-col ul li a {
+      color: var(--silver); text-decoration: none; font-size: 0.83rem;
+      transition: color 0.2s;
+    }
+    .footer-col ul li a:hover { color: var(--accent); }
+
+    .footer-bottom {
+      max-width: 1200px; margin: 24px auto 0;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;
+    }
+    .footer-bottom p { color: var(--grey); font-size: 0.78rem; }
+    .footer-bottom span { color: var(--accent); }
+
+    /* ─── MOBILE NAV MENU ─── */
+    .mobile-menu {
+      display: none;
+      position: fixed; top: 72px; left: 0; right: 0; bottom: 0;
+      background: var(--navy); z-index: 999;
+      flex-direction: column; align-items: center; justify-content: center; gap: 28px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      color: white; text-decoration: none; font-size: 1.2rem;
+      font-family: 'Syne', sans-serif; font-weight: 700;
+    }
+    .mobile-menu a:hover { color: var(--accent); }
+
+    /* ─── SCROLL UP ─── */
+    .scroll-top {
+      position: fixed; bottom: 28px; right: 28px; z-index: 500;
+      width: 44px; height: 44px; border-radius: 10px;
+      background: var(--sky); color: white; border: none;
+      font-size: 1rem; cursor: pointer;
+      box-shadow: 0 4px 16px rgba(30,107,184,0.3);
+      display: none; align-items: center; justify-content: center;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .scroll-top.visible { display: flex; }
+    .scroll-top:hover { background: var(--accent); color: var(--navy); transform: translateY(-2px); }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .hero-content { grid-template-columns: 1fr; gap: 40px; }
+      .hero-visual { display: none; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-visual { display: none; }
+      .contact-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; }
+      .why-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 700px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .hero-stats { flex-wrap: wrap; gap: 20px; }
+      .radar-card { display: none; }
+    }
+
+    /* ─── ANIMATE ON SCROLL ─── */
+    .reveal {
+      opacity: 0; transform: translateY(30px); transition: opacity 0.6s, transform 0.6s;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a href="#home" class="logo">
+    <div class="logo-icon"><i class="fa-solid fa-plane"></i></div>
+    <div class="logo-text">Air<span>Clear</span> Pakistan</div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#about">About Us</a></li>
+    <li><a href="#documents">Documents</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="https://wa.me/923001234567" target="_blank" class="nav-cta"><i class="fa-brands fa-whatsapp"></i> Request Permit</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#home" onclick="closeMobile()">Home</a>
+  <a href="#services" onclick="closeMobile()">Services</a>
+  <a href="#about" onclick="closeMobile()">About Us</a>
+  <a href="#documents" onclick="closeMobile()">Documents</a>
+  <a href="#contact" onclick="closeMobile()">Contact</a>
+  <a href="https://wa.me/923001234567" target="_blank" class="btn-primary" style="margin-top:8px;">Request Permit</a>
+</div>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-grid-bg"></div>
+  <div class="hero-glow"></div>
+  <div class="plane-fly"><i class="fa-solid fa-plane"></i></div>
+
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="hero-badge">
+        <div class="badge-dot"></div>
+        Operations Active — 24/7
+      </div>
+      <h1 class="hero-title">
+        Pakistan Overflight &amp;<br/>
+        Landing Permit<br/>
+        <span>Services</span>
+      </h1>
+      <p class="hero-sub">
+        Trusted by private jet operators, charter companies, cargo carriers, and airlines worldwide. We handle Pakistan CAA coordination so your flights proceed without delay.
+      </p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn-primary">
+          <i class="fa-solid fa-paper-plane"></i> Request Permit Now
+        </a>
+        <a href="#services" class="btn-secondary">
+          <i class="fa-solid fa-grid-2"></i> Our Services
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-num">24/7</div>
+          <div class="stat-label">Operations Support</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">48h</div>
+          <div class="stat-label">Avg. Permit Time</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">500+</div>
+          <div class="stat-label">Permits Processed</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="radar-card">
+        <div class="radar-sweep"></div>
+        <div class="radar-inner1"></div>
+        <div class="radar-inner2"></div>
+        <div class="radar-inner3"></div>
+        <div class="radar-cross-h"></div>
+        <div class="radar-cross-v"></div>
+        <div class="radar-blip"></div>
+        <div class="radar-blip"></div>
+        <div class="radar-blip"></div>
+        <div class="radar-label">Pakistan Airspace Operations</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-inner">
+    <div class="trust-item"><i class="fa-solid fa-shield-check"></i> CAA Approved Procedures</div>
+    <div class="trust-item"><i class="fa-solid fa-clock"></i> Round-the-Clock Availability</div>
+    <div class="trust-item"><i class="fa-solid fa-bolt"></i> Fast-Track Processing</div>
+    <div class="trust-item"><i class="fa-solid fa-headset"></i> Dedicated Ops Team</div>
+    <div class="trust-item"><i class="fa-solid fa-handshake"></i> Trusted by Global Operators</div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-wrap">
+    <div class="reveal">
+      <span class="section-tag">What We Offer</span>
+      <h2 class="section-title">Comprehensive <span>Aviation Permit</span> Services</h2>
+      <p class="section-desc">
+        We provide end-to-end flight permit support for all categories of aircraft operating to, from, or through Pakistan airspace — handled by our experienced operations team.
+      </p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-icon"><i class="fa-solid fa-route"></i></div>
+        <h3>Pakistan Overflight Permit</h3>
+        <p>Full assistance for operators requiring permission to transit Pakistan airspace without landing. We manage documentation and authority coordination.</p>
+        <ul class="service-list">
+          <li>Flight plan filing support</li>
+          <li>DGCA/CAA submission &amp; follow-up</li>
+          <li>Permission validity confirmation</li>
+          <li>Alternate routing advisory</li>
+        </ul>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon"><i class="fa-solid fa-plane-arrival"></i></div>
+        <h3>Pakistan Landing Permit</h3>
+        <p>Dedicated permit handling for private jets, charter operators, cargo freighters, and technical stop flights at all Pakistan international airports.</p>
+        <ul class="service-list">
+          <li>Private &amp; charter flight permits</li>
+          <li>Cargo &amp; freighter clearances</li>
+          <li>Technical &amp; fuel stop processing</li>
+          <li>Airport slot coordination</li>
+        </ul>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon"><i class="fa-solid fa-star-of-life"></i></div>
+        <h3>Diplomatic &amp; Special Clearances</h3>
+        <p>Expert handling of sensitive and high-priority clearances for state aircraft, VVIP operations, humanitarian flights, and special mission aircraft.</p>
+        <ul class="service-list">
+          <li>State aircraft clearances</li>
+          <li>VVIP &amp; executive jet handling</li>
+          <li>Humanitarian &amp; charter missions</li>
+          <li>Expedited processing available</li>
+        </ul>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon"><i class="fa-solid fa-tower-control"></i></div>
+        <h3>Slot &amp; Handling Coordination</h3>
+        <p>We liaise directly with airport authorities to secure slots and coordinate ground handling so your aircraft receives a seamless turnaround at Pakistani airports.</p>
+        <ul class="service-list">
+          <li>Arrival &amp; departure slot booking</li>
+          <li>Ground handler liaison</li>
+          <li>Fuel uplift coordination</li>
+          <li>Customs &amp; immigration support</li>
+        </ul>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon"><i class="fa-solid fa-boxes-stacked"></i></div>
+        <h3>Cargo &amp; Charter Operations</h3>
+        <p>Specialized permit support for cargo operators, ad hoc charters, and non-scheduled services requiring timely authority approvals for Pakistan operations.</p>
+        <ul class="service-list">
+          <li>Non-scheduled operator permits</li>
+          <li>DG cargo documentation review</li>
+          <li>Charter approval coordination</li>
+          <li>Load planning advisory</li>
+        </ul>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon"><i class="fa-solid fa-file-circle-check"></i></div>
+        <h3>Documentation &amp; Compliance</h3>
+        <p>We review operator submissions for accuracy and compliance before filing, significantly reducing rejection risk and authority query timelines.</p>
+        <ul class="service-list">
+          <li>Document pre-screening</li>
+          <li>Compliance gap assessment</li>
+          <li>Re-submission management</li>
+          <li>Regulatory advisory support</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT / WHY US -->
+<section id="about">
+  <div class="section-wrap">
+    <div class="about-grid">
+      <div class="about-visual reveal">
+        <div class="about-img-box">
+          <div class="about-stat-cards">
+            <div class="asc"><div class="asc-num">500+</div><div class="asc-label">Permits Issued</div></div>
+            <div class="asc"><div class="asc-num">99%</div><div class="asc-label">Success Rate</div></div>
+            <div class="asc"><div class="asc-num">50+</div><div class="asc-label">Countries Served</div></div>
+          </div>
+          <div class="about-icon-big"><i class="fa-solid fa-plane-circle-check"></i></div>
+        </div>
+        <div class="about-badge-float">Pakistan CAA<br/>Liaison Experts</div>
+      </div>
+      <div class="about-content reveal">
+        <span class="section-tag">Why Choose Us</span>
+        <h2 class="section-title">Your Trusted <span>Operations Partner</span> in Pakistan</h2>
+        <p class="section-desc">
+          AirClear Pakistan is a specialized aviation ground operations and permit facilitation company based in Pakistan. We have established direct working relationships with Pakistan CAA, DGCA, and all major Pakistani airport authorities, enabling us to deliver fast and reliable permit support to international operators.
+        </p>
+        <div class="why-grid">
+          <div class="why-item">
+            <div class="why-icon"><i class="fa-solid fa-clock"></i></div>
+            <div>
+              <h4>24/7 Operations</h4>
+              <p>Our team is available round the clock to handle urgent permits and last-minute clearance requests.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-icon"><i class="fa-solid fa-bolt-lightning"></i></div>
+            <div>
+              <h4>Fast Turnaround</h4>
+              <p>Standard permits processed within 48 hours. Urgent cases handled with priority fast-track processing.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-icon"><i class="fa-solid fa-handshake-angle"></i></div>
+            <div>
+              <h4>Direct CAA Liaison</h4>
+              <p>We have established channels with Pakistan's civil aviation authorities for efficient, accurate submissions.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-icon"><i class="fa-solid fa-globe"></i></div>
+            <div>
+              <h4>Global Clientele</h4>
+              <p>We assist operators from Europe, Middle East, Asia, and North America with Pakistan airspace clearances.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-icon"><i class="fa-solid fa-shield-halved"></i></div>
+            <div>
+              <h4>Compliance Assured</h4>
+              <p>Every permit is checked for regulatory compliance before submission to minimize delay or rejection.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-icon"><i class="fa-solid fa-headset"></i></div>
+            <div>
+              <h4>Dedicated Support</h4>
+              <p>Single point of contact for each operation — your dedicated handler stays with you through clearance.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DOCUMENTS REQUIRED -->
+<section id="documents">
+  <div class="section-wrap">
+    <div class="reveal" style="text-align:center; max-width: 600px; margin: 0 auto 48px;">
+      <span class="section-tag">Documentation Guide</span>
+      <h2 class="section-title">Documents <span>Required</span> for Pakistan Permits</h2>
+      <p class="section-desc" style="margin: 0 auto;">
+        Ensure your application is complete to avoid delays. Our team will review all documents for accuracy before submission.
+      </p>
+    </div>
+    <div class="docs-grid">
+      <div class="doc-card reveal">
+        <div class="doc-card-header">
+          <div class="doc-icon"><i class="fa-solid fa-route"></i></div>
+          <h3>Overflight Permit Documents</h3>
+        </div>
+        <ul class="doc-list">
+          <li><i class="fa-solid fa-check"></i> Operator's Air Operator Certificate (AOC)</li>
+          <li><i class="fa-solid fa-check"></i> Aircraft Certificate of Registration</li>
+          <li><i class="fa-solid fa-check"></i> Certificate of Airworthiness (C of A)</li>
+          <li><i class="fa-solid fa-check"></i> Third-Party Liability Insurance Certificate</li>
+          <li><i class="fa-solid fa-check"></i> Flight Schedule / Routing Details</li>
+          <li><i class="fa-solid fa-check"></i> Crew List with nationalities &amp; passport numbers</li>
+          <li><i class="fa-solid fa-check"></i> Radio Station License</li>
+        </ul>
+      </div>
+      <div class="doc-card reveal">
+        <div class="doc-card-header">
+          <div class="doc-icon"><i class="fa-solid fa-plane-arrival"></i></div>
+          <h3>Landing Permit Documents</h3>
+        </div>
+        <ul class="doc-list">
+          <li><i class="fa-solid fa-check"></i> All Overflight documents (above)</li>
+          <li><i class="fa-solid fa-check"></i> Noise Certificate (if applicable)</li>
+          <li><i class="fa-solid fa-check"></i> General Declaration (GenDec)</li>
+          <li><i class="fa-solid fa-check"></i> Passenger/Cargo manifest</li>
+          <li><i class="fa-solid fa-check"></i> Details of handling agent in Pakistan</li>
+          <li><i class="fa-solid fa-check"></i> Purpose of flight declaration</li>
+          <li><i class="fa-solid fa-check"></i> Dangerous Goods declaration (if applicable)</li>
+        </ul>
+      </div>
+      <div class="doc-card reveal">
+        <div class="doc-card-header">
+          <div class="doc-icon"><i class="fa-solid fa-star-of-life"></i></div>
+          <h3>Diplomatic / Special Mission</h3>
+        </div>
+        <ul class="doc-list">
+          <li><i class="fa-solid fa-check"></i> Diplomatic note / official request letter</li>
+          <li><i class="fa-solid fa-check"></i> State aircraft authorization from home authority</li>
+          <li><i class="fa-solid fa-check"></i> Passenger list with diplomatic status</li>
+          <li><i class="fa-solid fa-check"></i> Security clearance documentation</li>
+          <li><i class="fa-solid fa-check"></i> Aircraft registration &amp; operator details</li>
+          <li><i class="fa-solid fa-check"></i> Mission brief / purpose of visit</li>
+          <li><i class="fa-solid fa-check"></i> Contact details for protocol officer</li>
+        </ul>
+      </div>
+    </div>
+    <div class="doc-note reveal">
+      <i class="fa-solid fa-circle-info"></i>
+      <div>
+        <h4>Document Submission Timeline</h4>
+        <p>For standard overflight and landing permits, documents should be submitted at minimum <strong>72 hours prior to the planned flight</strong>. For urgent/last-minute requests, contact our operations team immediately via WhatsApp — we offer expedited processing subject to authority availability. Diplomatic clearances may require 5–7 working days advance notice.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA STRIP -->
+<div class="cta-strip">
+  <h2>Ready to Clear Pakistan Airspace?</h2>
+  <p>Contact our operations team now — we'll handle everything from documentation to final approval.</p>
+  <div class="cta-btns">
+    <a href="#contact" class="btn-primary"><i class="fa-solid fa-paper-plane"></i> Request Permit Now</a>
+    <a href="https://wa.me/923001234567" target="_blank" class="btn-whatsapp"><i class="fa-brands fa-whatsapp"></i> WhatsApp Operations</a>
+    <a href="#contact" class="btn-secondary" style="border-color:rgba(255,255,255,0.3);color:white;"><i class="fa-solid fa-phone"></i> Contact Operations</a>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-wrap">
+    <div class="reveal" style="text-align:center; max-width:560px; margin:0 auto 48px;">
+      <span class="section-tag">Get In Touch</span>
+      <h2 class="section-title">Contact Our <span>Operations Team</span></h2>
+      <p class="section-desc" style="margin:0 auto;">Reach us anytime — we're available 24/7 to handle your Pakistan permit requirements.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <h3>Reach Us Directly</h3>
+
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+          <div>
+            <h4>Operations Hotline</h4>
+            <a href="tel:+923001234567">+92 300 123 4567</a><br/>
+            <a href="tel:+922134567890" style="font-size:0.82rem;color:var(--grey);">+92 21 345 6789 (Office)</a>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+          <div>
+            <h4>Email</h4>
+            <a href="mailto:ops@airclearpakistan.com">ops@airclearpakistan.com</a><br/>
+            <a href="mailto:permits@airclearpakistan.com" style="font-size:0.82rem;color:var(--grey);">permits@airclearpakistan.com</a>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+          <div>
+            <h4>Office Address</h4>
+            <p>Karachi, Pakistan<br/><span style="font-size:0.82rem;color:var(--grey);">Serving all Pakistan international airports</span></p>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon"><i class="fa-solid fa-clock"></i></div>
+          <div>
+            <h4>Operations Hours</h4>
+            <p>24 Hours / 7 Days a Week<br/><span style="font-size:0.82rem;color:var(--grey);">Holidays and weekends included</span></p>
+          </div>
+        </div>
+
+        <a href="https://wa.me/923001234567?text=Hello%2C%20I%20need%20assistance%20with%20a%20Pakistan%20flight%20permit." target="_blank" class="wa-card">
+          <i class="fa-brands fa-whatsapp"></i>
+          <div class="wa-card-text">
+            <strong>Message Us on WhatsApp</strong>
+            <span>Fastest response — typically under 15 minutes</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="contact-form reveal">
+        <h3>Submit a Permit Inquiry</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Your Name *</label>
+            <input type="text" placeholder="Full name"/>
+          </div>
+          <div class="form-group">
+            <label>Company / Operator *</label>
+            <input type="text" placeholder="Airline / Charter / OPS agent"/>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Email Address *</label>
+            <input type="email" placeholder="ops@yourcompany.com"/>
+          </div>
+          <div class="form-group">
+            <label>Phone / WhatsApp *</label>
+            <input type="tel" placeholder="+1 234 567 8900"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Permit Type Required *</label>
+          <select>
+            <option value="">Select permit type...</option>
+            <option>Pakistan Overflight Permit</option>
+            <option>Pakistan Landing Permit</option>
+            <option>Diplomatic / Special Clearance</option>
+            <option>Slot &amp; Handling Coordination</option>
+            <option>Cargo / Charter Permit</option>
+            <option>Other / Multiple</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Aircraft Type / Registration</label>
+            <input type="text" placeholder="e.g. B737 / AP-BCD"/>
+          </div>
+          <div class="form-group">
+            <label>Planned Flight Date</label>
+            <input type="date"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Route / Sector</label>
+          <input type="text" placeholder="e.g. DXB – KHI – DXB"/>
+        </div>
+        <div class="form-group">
+          <label>Additional Details / Message</label>
+          <textarea placeholder="Please include any special requirements, urgency, or questions..."></textarea>
+        </div>
+        <button class="btn-submit" onclick="submitForm(event)">
+          <i class="fa-solid fa-paper-plane"></i> Submit Permit Request
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="#home" class="logo">
+        <div class="logo-icon"><i class="fa-solid fa-plane"></i></div>
+        <div class="logo-text">Air<span>Clear</span> Pakistan</div>
+      </a>
+      <p>Pakistan's trusted aviation permit facilitation company, providing overflight and landing permit support to international operators across all categories of aircraft.</p>
+      <div class="footer-social">
+        <a href="#" class="social-btn"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="https://wa.me/923001234567" target="_blank" class="social-btn"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="mailto:ops@airclearpakistan.com" class="social-btn"><i class="fa-solid fa-envelope"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#documents">Documents Required</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#services">Overflight Permits</a></li>
+        <li><a href="#services">Landing Permits</a></li>
+        <li><a href="#services">Diplomatic Clearances</a></li>
+        <li><a href="#services">Slot Coordination</a></li>
+        <li><a href="#services">Cargo Permits</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2025 AirClear Pakistan. All rights reserved.</p>
+    <p>Designed with <span>♥</span> for aviation professionals worldwide.</p>
+  </div>
+</footer>
+
+<!-- SCROLL TOP -->
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+  <i class="fa-solid fa-chevron-up"></i>
+</button>
+
+<script>
+  // Hamburger
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    mobileMenu.classList.toggle('open');
+  });
+  function closeMobile() {
+    mobileMenu.classList.remove('open');
+  }
+
+  // Scroll top button
+  const scrollTopBtn = document.getElementById('scrollTop');
+  window.addEventListener('scroll', () => {
+    scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
+  });
+
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Staggered reveal for grids
+  document.querySelectorAll('.services-grid .service-card, .docs-grid .doc-card, .why-grid .why-item').forEach((el, i) => {
+    el.style.transitionDelay = (i * 80) + 'ms';
+  });
+
+  // Form submit
+  function submitForm(e) {
+    e.preventDefault();
+    const btn = e.target;
+    btn.innerHTML = '<i class="fa-solid fa-check"></i> Request Submitted!';
+    btn.style.background = '#1a9e6e';
+    setTimeout(() => {
+      btn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Submit Permit Request';
+      btn.style.background = '';
+    }, 3000);
+  }
+
+  // Close mobile menu on scroll
+  window.addEventListener('scroll', () => { mobileMenu.classList.remove('open'); });
+</script>
+</body>
+</html>
